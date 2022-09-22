@@ -1,9 +1,11 @@
 import React from 'react'
 import Todo from '../models/todo'
-const Todos: React.FC<{ items: Todo[] }> = (props) => {
-    return (<ul>
+import classes from './Todos.module.css'
+import TodoItem from './TodoItem'
+const Todos: React.FC<{ items: Todo[], deleteTodoHandler: (id: string) => void }> = (props) => {
+    return (<ul className={classes.todos}>
         {props.items.map((item) => {
-            return (<li>{item.text}</li>)
+            return <TodoItem deleteTodoHandler={props.deleteTodoHandler} text={item.text} id={item.id}/>
         })}
     </ul>)
 }

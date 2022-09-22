@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import './App.css';
 import NewTodo from './components/NewTodo';
 import Todos from './components/Todos';
+import './App.css'
 import Todo from './models/todo';
 
 function App() {
@@ -14,12 +14,19 @@ function App() {
             // never mutate the original state
         })
     }
+    const deleteTodoHandler = (id: string): void => {
+        setTodos( (prevState) => {
+            return(
+                prevState.filter( (todo) => todo.id !== id)
+            );
+        })
+    }
     
     return (
         <div className="App">
             <header className="App-header">
                 <NewTodo onAddTodo={onAddTodo}/>
-                <Todos items={todos} />
+                <Todos items={todos} deleteTodoHandler={deleteTodoHandler} />
             </header>
         </div>
     );
