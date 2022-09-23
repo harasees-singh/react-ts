@@ -2,14 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import TodosContextProvider from './store/todos-context';
+import Todo from './models/todo';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
-    <React.StrictMode>
+    <TodosContextProvider>
         <App />
-    </React.StrictMode>
+    </TodosContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

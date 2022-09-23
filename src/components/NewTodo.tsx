@@ -1,6 +1,9 @@
 import React, { useRef } from 'react'
 import classes from './NewTodo.module.css'
-const NewTodo: React.FC<{onAddTodo: (text: string) => void}> = (props) => {
+import { useContext } from 'react'
+import { TodosContext } from '../store/todos-context'
+const NewTodo: React.FC = () => {
+    const todosCTX = useContext(TodosContext);
 
     const textInputRef = useRef<HTMLInputElement>(null);
     const onSubmitHandler = (event: React.FormEvent) => {
@@ -11,8 +14,8 @@ const NewTodo: React.FC<{onAddTodo: (text: string) => void}> = (props) => {
         // HTMLInputElement so it's cool
         // else use ? instead of !
         // in case u use ? enteredText will have a type string | undefined
-        props.onAddTodo(enteredText);
-    }   
+        todosCTX.addTodo(enteredText);
+    }
     return (
         <form onSubmit={onSubmitHandler} className={classes.form}>
             <label htmlFor="text">Todo Text</label>
